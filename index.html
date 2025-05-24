@@ -12,14 +12,20 @@
 <body>
 
   <h2>📝 Quiz : Féminin & Pluriel en Espagnol</h2>
+  <p id="timer">⏳ Temps : <span id="time">0</span> secondes</p>
   <form id="quizForm"></form>
   <button onclick="corriger()">Vérifier mes réponses</button>
   <button onclick="rejouer()">Rejouer</button>
-
+  <button onclick="montrerReponses()">Voir les bonnes réponses</button>
   <div id="result" class="result"></div>
 
   <script>
     let quizData = [];
+    let seconds = 0;
+    let timerInterval = setInterval(() => {
+      seconds++;
+      document.getElementById("time").textContent = seconds;
+    }, 1000);
 
     fetch("quiz-feminin-pluriel.json")
       .then(response => response.json())
@@ -53,21 +59,37 @@
         }
       });
 
-      function rejouer() {
-  // Réinitialise tous les boutons radio
-  quizData.forEach((q, idx) => {
-    const radios = document.getElementsByName(`q${idx}`);
-    radios.forEach(r => r.checked = false);
-  });
-  // Efface le score
-  document.getElementById("result").innerHTML = "";
-}
-
       const total = quizData.length;
       const res = (score === total)
-        ? `🎉 Bravo ! Score parfait : ${score}/${total}`
-        : `✅ Score : ${score}/${total}<br>❌ Erreurs aux questions : ${erreurs.join(", ")}`;
+        ? `🎉 Bravo ! Score parfait : ${score}/${total} en ${seconds} secondes`
+        : `✅ Score : ${score}/${total}<br>❌ Erreurs aux questions : ${erreurs.join(", ")}<br>⏱️ Temps : ${seconds} secondes`;
       document.getElementById("result").innerHTML = res;
+    }
+
+    function rejouer() {
+      seconds = 0;
+      document.getElementById("time").textContent = "0";
+      quizData.forEach((q, idx) => {
+        const radios = document.getElementsByName(`q${idx}`);
+        radios.forEach(r => {
+          r.checked = false;
+          r.parentElement.style.background = "";
+        });
+      });
+      document.getElementById("result").innerHTML = "";
+    }
+
+    function montrerReponses() {
+      quizData.forEach((q, idx) => {
+        const radios = document.getElementsByName(`q${idx}`);
+        radios.forEach(radio => {
+          if (radio.value === q.answer) {
+            radio.parentElement.style.background = "#c8facc";
+          } else {
+            radio.parentElement.style.background = "";
+          }
+        });
+      });
     }
   </script>
 
