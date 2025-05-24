@@ -1,0 +1,47 @@
+[
+  {
+    "question": "Quel est le féminin de \"amigo\" ?",
+    "options": {
+      "a": "amigue",
+      "b": "amiga",
+      "c": "amigua"
+    },
+    "answer": "b"
+  },
+  {
+    "question": "Complète : \"Los ___ son simpáticos.\"",
+    "options": {
+      "a": "chica",
+      "b": "chicos",
+      "c": "chicas"
+    },
+    "answer": "b"
+  },
+  {
+    "question": "Le pluriel de \"luz\" est :",
+    "options": {
+      "a": "luces",
+      "b": "luzes",
+      "c": "luceses"
+    },
+    "answer": "a"
+  },
+  {
+    "question": "Quelle phrase est correctement accordée ?",
+    "options": {
+      "a": "Las chicas guapo",
+      "b": "Los chicos guapas",
+      "c": "Las chicas simpáticas"
+    },
+    "answer": "c"
+  },
+  {
+    "question": "Le mot \"inteligente\" au féminin devient :",
+    "options": {
+      "a": "inteligente",
+      "b": "inteligenta",
+      "c": "intelligentia"
+    },
+    "answer": "a"
+  }
+]
