@@ -14,6 +14,8 @@
   <h2>📝 Quiz : Féminin & Pluriel en Espagnol</h2>
   <form id="quizForm"></form>
   <button onclick="corriger()">Vérifier mes réponses</button>
+  <button onclick="rejouer()">Rejouer</button>
+
   <div id="result" class="result"></div>
 
   <script>
@@ -50,6 +52,16 @@
           erreurs.push(idx + 1);
         }
       });
+
+      function rejouer() {
+  // Réinitialise tous les boutons radio
+  quizData.forEach((q, idx) => {
+    const radios = document.getElementsByName(`q${idx}`);
+    radios.forEach(r => r.checked = false);
+  });
+  // Efface le score
+  document.getElementById("result").innerHTML = "";
+}
 
       const total = quizData.length;
       const res = (score === total)
